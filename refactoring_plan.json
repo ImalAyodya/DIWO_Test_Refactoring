@@ -1,0 +1,686 @@
+{
+  "repository": "automotive_ecu_gateway",
+  "language": "c",
+  "version": "1.0",
+  "total_modules": 30,
+  "plans": [
+    {
+      "plan_id": "ecu_01_wheel_pi",
+      "target": "src/wheel_speed_sensor.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/wheel_speed_sensor.c",
+            "function": "calculate_wheel_distance",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/wheel_speed_sensor.c",
+            "constant_name": "PI_VALUE",
+            "literal_value": 3.14159,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_02_can_strcpy",
+      "target": "src/can_receiver.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Unsafe Function",
+          "target": {
+            "file": "src/can_receiver.c",
+            "function": "receive_can_frame",
+            "lines": [
+              6,
+              6
+            ]
+          },
+          "parameters": {
+            "source_file": "src/can_receiver.c",
+            "unsafe_function": "strcpy",
+            "safe_alternative": "strncpy",
+            "source_line": 6
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_03_engine_sprintf",
+      "target": "src/engine_telemetry.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Unsafe Function",
+          "target": {
+            "file": "src/engine_telemetry.c",
+            "function": "log_engine_status",
+            "lines": [
+              5,
+              5
+            ]
+          },
+          "parameters": {
+            "source_file": "src/engine_telemetry.c",
+            "unsafe_function": "sprintf",
+            "safe_alternative": "snprintf",
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_04_rpm_redline",
+      "target": "src/engine_rpm_limiter.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/engine_rpm_limiter.c",
+            "function": "check_engine_redline",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/engine_rpm_limiter.c",
+            "constant_name": "MAX_RPM_LIMIT",
+            "literal_value": 6500,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_05_tps_rename",
+      "target": "src/throttle_sensor.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Symbol",
+          "target": {
+            "file": "src/throttle_sensor.c",
+            "function": "calc_tps"
+          },
+          "parameters": {
+            "source_file": "src/throttle_sensor.c",
+            "old_name": "calc_tps",
+            "new_name": "calculate_throttle_percentage"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_06_brake_pressure",
+      "target": "src/brake_pressure.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/brake_pressure.c",
+            "function": "check_brake_overpressure",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/brake_pressure.c",
+            "constant_name": "MAX_BRAKE_PRESSURE_BAR",
+            "literal_value": 120,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_07_can_encapsulate",
+      "target": "src/can_frame_counter.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Encapsulate Variable",
+          "target": {
+            "file": "src/can_frame_counter.c",
+            "variable": "global_can_rx_count"
+          },
+          "parameters": {
+            "source_file": "src/can_frame_counter.c",
+            "variable_name": "global_can_rx_count",
+            "getter_name": "get_global_can_rx_count",
+            "setter_name": "set_global_can_rx_count"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_08_watchdog_constant",
+      "target": "src/ecu_watchdog.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/ecu_watchdog.c",
+            "function": "resolve_ecu_watchdog",
+            "lines": [
+              5,
+              5
+            ]
+          },
+          "parameters": {
+            "source_file": "src/ecu_watchdog.c",
+            "constant_name": "DEFAULT_WATCHDOG_MS",
+            "literal_value": 50,
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_09_dtc_size",
+      "target": "src/dtc_manager.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/dtc_manager.c",
+            "function": "validate_dtc_buffer_size",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/dtc_manager.c",
+            "constant_name": "MAX_DTC_BUFFER_SIZE",
+            "literal_value": 256,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_10_tmp_rename",
+      "target": "src/oil_temperature.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Symbol",
+          "target": {
+            "file": "src/oil_temperature.c",
+            "function": "rd_tmp"
+          },
+          "parameters": {
+            "source_file": "src/oil_temperature.c",
+            "old_name": "rd_tmp",
+            "new_name": "read_oil_temperature"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_11_bms_voltage",
+      "target": "src/bms_cell_monitor.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/bms_cell_monitor.c",
+            "function": "check_bms_cell_overvoltage",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/bms_cell_monitor.c",
+            "constant_name": "MAX_CELL_VOLTAGE_MV",
+            "literal_value": 4200,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_12_airbag_sprintf",
+      "target": "src/airbag_controller.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Unsafe Function",
+          "target": {
+            "file": "src/airbag_controller.c",
+            "function": "log_airbag_event",
+            "lines": [
+              5,
+              5
+            ]
+          },
+          "parameters": {
+            "source_file": "src/airbag_controller.c",
+            "unsafe_function": "sprintf",
+            "safe_alternative": "snprintf",
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_13_transmission_ratio",
+      "target": "src/transmission_controller.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/transmission_controller.c",
+            "function": "compute_gear_ratio_factor",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/transmission_controller.c",
+            "constant_name": "MAX_DISCOUNT_THRESHOLD",
+            "literal_value": 1000,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_14_cruise_limit",
+      "target": "src/cruise_control.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/cruise_control.c",
+            "function": "validate_cruise_setpoint",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/cruise_control.c",
+            "constant_name": "MAX_CRUISE_SPEED_KMH",
+            "literal_value": 180,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_15_torque_rename",
+      "target": "src/steering_torque.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Symbol",
+          "target": {
+            "file": "src/steering_torque.c",
+            "function": "proc_trq"
+          },
+          "parameters": {
+            "source_file": "src/steering_torque.c",
+            "old_name": "proc_trq",
+            "new_name": "process_steering_torque"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_16_odometer_encapsulate",
+      "target": "src/odometer_service.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Encapsulate Variable",
+          "target": {
+            "file": "src/odometer_service.c",
+            "variable": "global_odometer_pulses"
+          },
+          "parameters": {
+            "source_file": "src/odometer_service.c",
+            "variable_name": "global_odometer_pulses",
+            "getter_name": "get_global_odometer_pulses",
+            "setter_name": "set_global_odometer_pulses"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_17_fan_duty",
+      "target": "src/cooling_system.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/cooling_system.c",
+            "function": "clamp_fan_duty_cycle",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/cooling_system.c",
+            "constant_name": "MAX_FAN_DUTY_PERCENT",
+            "literal_value": 100,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_18_obd_strcpy",
+      "target": "src/obd_diagnostic_service.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Unsafe Function",
+          "target": {
+            "file": "src/obd_diagnostic_service.c",
+            "function": "format_obd_response",
+            "lines": [
+              6,
+              6
+            ]
+          },
+          "parameters": {
+            "source_file": "src/obd_diagnostic_service.c",
+            "unsafe_function": "strcpy",
+            "safe_alternative": "strncpy",
+            "source_line": 6
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_19_injector_map",
+      "target": "src/fuel_injector.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/fuel_injector.c",
+            "function": "configure_injection_map_size",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/fuel_injector.c",
+            "constant_name": "BUFFER_SIZE",
+            "literal_value": 1024,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_20_slip_rename",
+      "target": "src/abs_brake_system.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Symbol",
+          "target": {
+            "file": "src/abs_brake_system.c",
+            "function": "chk_slp"
+          },
+          "parameters": {
+            "source_file": "src/abs_brake_system.c",
+            "old_name": "chk_slp",
+            "new_name": "check_wheel_slip_ratio"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_21_tpms_psi",
+      "target": "src/tpms_sensor.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/tpms_sensor.c",
+            "function": "check_tpms_nominal_psi",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/tpms_sensor.c",
+            "constant_name": "NOMINAL_TIRE_PSI",
+            "literal_value": 32,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_22_lambda_stoich",
+      "target": "src/exhaust_lambda.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/exhaust_lambda.c",
+            "function": "compute_lambda_stoichiometry",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/exhaust_lambda.c",
+            "constant_name": "STOICHIOMETRIC_RATIO",
+            "literal_value": 14.7,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_23_security_sprintf",
+      "target": "src/can_security_ids.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Unsafe Function",
+          "target": {
+            "file": "src/can_security_ids.c",
+            "function": "log_security_intrusion",
+            "lines": [
+              5,
+              5
+            ]
+          },
+          "parameters": {
+            "source_file": "src/can_security_ids.c",
+            "unsafe_function": "sprintf",
+            "safe_alternative": "snprintf",
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_24_yaw_rename",
+      "target": "src/esp_stability.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Symbol",
+          "target": {
+            "file": "src/esp_stability.c",
+            "function": "evl_yaw"
+          },
+          "parameters": {
+            "source_file": "src/esp_stability.c",
+            "old_name": "evl_yaw",
+            "new_name": "evaluate_yaw_stability"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_25_dropped_encapsulate",
+      "target": "src/can_frame_dropper.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Encapsulate Variable",
+          "target": {
+            "file": "src/can_frame_dropper.c",
+            "variable": "global_can_dropped_count"
+          },
+          "parameters": {
+            "source_file": "src/can_frame_dropper.c",
+            "variable_name": "global_can_dropped_count",
+            "getter_name": "get_global_can_dropped_count",
+            "setter_name": "set_global_can_dropped_count"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_26_lux_constant",
+      "target": "src/ambient_light_sensor.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/ambient_light_sensor.c",
+            "function": "check_auto_headlight_trigger",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/ambient_light_sensor.c",
+            "constant_name": "HEADLIGHT_LUX_THRESHOLD",
+            "literal_value": 300,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_27_immo_strcpy",
+      "target": "src/immobilizer_security.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Unsafe Function",
+          "target": {
+            "file": "src/immobilizer_security.c",
+            "function": "verify_transponder_key",
+            "lines": [
+              6,
+              6
+            ]
+          },
+          "parameters": {
+            "source_file": "src/immobilizer_security.c",
+            "unsafe_function": "strcpy",
+            "safe_alternative": "strncpy",
+            "source_line": 6
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_28_turbo_boost",
+      "target": "src/turbo_boost_controller.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/turbo_boost_controller.c",
+            "function": "check_turbo_overboost",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/turbo_boost_controller.c",
+            "constant_name": "MAX_BOOST_PRESSURE_MBAR",
+            "literal_value": 2500,
+            "source_line": 4
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_29_climate_rename",
+      "target": "src/hvac_climate_control.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Symbol",
+          "target": {
+            "file": "src/hvac_climate_control.c",
+            "function": "set_clm"
+          },
+          "parameters": {
+            "source_file": "src/hvac_climate_control.c",
+            "old_name": "set_clm",
+            "new_name": "set_climate_temperature"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "ecu_30_ota_block",
+      "target": "src/ota_firmware_updater.c",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/ota_firmware_updater.c",
+            "function": "validate_ota_block_size",
+            "lines": [
+              4,
+              4
+            ]
+          },
+          "parameters": {
+            "source_file": "src/ota_firmware_updater.c",
+            "constant_name": "MAX_OTA_BLOCK_SIZE",
+            "literal_value": 512,
+            "source_line": 4
+          }
+        }
+      ]
+    }
+  ]
+}
